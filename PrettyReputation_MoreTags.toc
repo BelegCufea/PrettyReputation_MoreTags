@@ -1,0 +1,11 @@
+## Interface: 100005
+## Title: Pretty Reputation - more tags
+## Notes: Add more tags to Pretty Reputation addon
+## Version: 1.0.0
+## Author: Cufea
+## Dependencies: PrettyReputation
+## DefaultState: enabled
+
+Libs\LibStub\LibStub.lua
+
+PrettyReputation_MoreTags.lua
