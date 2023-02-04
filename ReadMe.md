@@ -59,14 +59,17 @@ From `LibStub("PrettyReputationTags").Const`.These are plain values.
 
 ### Libraries
 
-You will need LibStub
+You will need LibStub (included in this example)
 
 ### TOC
 ...
+
 \## Dependencies: PrettyReputation
+
 ...
 
 Libs\LibStub\LibStub.lua
+
 ...
 
 ### LUA
@@ -74,6 +77,8 @@ Libs\LibStub\LibStub.lua
 ```lua
 local tags = LibStub("PrettyReputationTags")
 local definition = tags.Definition
+local options = tags.Options
+local const = tags.Const
 ```
 
 2. Define new tag
@@ -121,3 +126,7 @@ definition["c_name"] = {
     end
 }
 ```
+
+## New and modified tags are shown in options
+
+![Options with new tags](https://i.imgur.com/9u6aa0J.png)
