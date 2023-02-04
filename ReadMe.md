@@ -8,12 +8,14 @@ New tags will be listed (and available) in config of Pretty Reputation
 From info parameter of the function
 
 ### Extracted from Blizzard message
+
 * faction = name of faction as provided by Blizzad reputation message
 * change = absolute value of actual gain/loss
 * negative = set to true if chnage is negative (i.e. reputation loss)
 * session = reputation change during session (this one may be negative)
 
 ### From iterating factions (GetFactionInfo)
+
 * factionId = Id of faction
 
 ### Gain using Blizzard API (GetFactionInfoByID, GetFactionParagonInfo, GetFriendshipReputation)
@@ -32,7 +34,7 @@ It is possible that Pretty Reputation will not be able to fill these variables (
 * paragon = paragon level with possible reward (with no regard to settings), empty string if no paragon level obtaied
 * renown = renown level, empty string if no renown available
 
-## Other available
+## Other available variables
 
 ### Some of the variables form options
 
@@ -62,18 +64,20 @@ From `LibStub("PrettyReputationTags").Const`.These are plain values.
 You will need LibStub (included in this example)
 
 ### TOC
+
+```
 ...
-
-\## Dependencies: PrettyReputation
-
+## Dependencies: PrettyReputation
 ...
-
 Libs\LibStub\LibStub.lua
-
 ...
+```
+
 
 ### LUA
+
 1. Grap library
+
 ```lua
 local tags = LibStub("PrettyReputationTags")
 local definition = tags.Definition
@@ -82,6 +86,7 @@ local const = tags.Const
 ```
 
 2. Define new tag
+
 All the info is in `info` variable that has to be passed in function of `value`
 
 * simple example
@@ -95,6 +100,7 @@ definition["MD-newTag"] = {
 ```
 
 * using options and const
+
 ```lua
 definition["MD-paragonTest"] = {
     desc = "paragon testing tag",
@@ -110,14 +116,17 @@ definition["MD-paragonTest"] = {
 ```
 
 3. Redefine existing tag
+
 Any available tag can be modified
 
 * only return value
+
 ```lua
 definition["name"].value = function(info) return "Faction name: " .. info.name end
 ```
 
 * including description
+
 ```lua
 definition["c_name"] = {
     desc = "redefined c_name tag",
