@@ -1,39 +1,37 @@
 # Pretty Reputation tags
 
-You can use available data from [Pretty Reputation](https://github.com/BelegCufea/PrettyReputation) to define your own TAGS. You can even modify already defined ones.
-New tags will be listed (and available) in config of Pretty Reputation
-
+You can define your own custom tags using the available data from [Pretty Reputation](https://github.com/BelegCufea/PrettyReputation). You can even modify existing tags. The newly created tags will be listed and available in the config of Pretty Reputation.
 
 ## 1. Available info
 
-From info parameter of the function (see [Structure of TAG](#structure-of-tag) section)
+From info parameter in the function (as described in the [Structure of a TAG](#structure-of-a-tag) section) contains the following information:
 
-### 1.1 Extracted from Blizzard message
+### 1.1 Extracted from Blizzard message (GetCurrentCombatTextEventInfo)
 
-* faction = name of faction as provided by Blizzad reputation message
-* change = absolute value of actual gain/loss
-* negative = set to true if change is negative (i.e. reputation loss) otherwise nil
-* session = reputation change during session (this one may be negative)
+* faction =  Name of the faction, as provided by the Blizzard reputation message
+* change = Absolute value of the actual gain/loss
+* negative = Set to true if the change is negative (i.e., a reputation loss), otherwise nil
+* session = Reputation change during the session (this value may be negative)
 
 ### 1.2 From iterating factions (GetFactionInfo)
 
-* factionId = Id of faction
+* factionId = ID of the faction
 
 ### 1.3 Gain using Blizzard API (GetFactionInfoByID, GetFactionParagonInfo, GetFriendshipReputation)
 
-It is possible that Pretty Reputation will not be able to fill these variables (as I am shitty programmer). In that case, Pretty reputation will override the whole messsage with predefined text.
+It is possible that Pretty Reputation will not be able to fill these variables (as I am a bad programmer). In that case, Pretty Reputation will override the entire message with a predefined text.
 
-* name = name of faction
-* standingId = Id of standing
-* standingText = reputation standing ("Friendly", "Revered", "True friend" ...), it may include reward icon and  if set in options also paragon level.
-* standingColor = color string in form of "|cffrrggbb" for intergating in your message, don't forget to add "|r" at the end
-    * color = same as above, but the format is {r = x, g = y, b = z}, where x, y, z are number form 0 to 1
-* current = current raputation value
-* maximum = maximum value of current reputation (e.g. for Revered it is 21000 to reach Exalted)
-* bottom = raw number of reputation points for current standing (bottom value)
-* top = raw number of reputation points for current standing (top value)
-* paragon = reward icon (if available) and if set in options also paragon level, empty string if no paragon level obtaied
-* renown = renown level, empty string if no renown available
+* name = Name of the faction
+* standingId = ID of the standing
+* standingText = Reputation standing (e.g., "Friendly," "Revered," "True friend," etc.), it may include a reward icon and the paragon level if set in the options.
+* standingColor =  Color string in the format of "|cffrrggbb" for integrating in your message. Don't forget to add "|r" at the end.
+    * color = Same as above, but the format is {r = x, g = y, b = z}, where x, y, and z are numbers from 0 to 1.
+* current = Current reputation value
+* maximum = Maximum value of the current reputation (e.g., for Revered it is 21000 to reach Exalted)
+* bottom =  Raw number of reputation points for the current standing (bottom value)
+* top =  Raw number of reputation points for the current standing (top value)
+* paragon = Reward icon (if available) and if set in the options, the paragon level. Empty string if no paragon level is obtained.
+* renown = Renown level, empty string if no renown is available.
 
 ## 2. Other available variables
 
@@ -41,28 +39,29 @@ It is possible that Pretty Reputation will not be able to fill these variables (
 
 From `LibStub("PrettyReputationTags").Options`. These are returned as functions.
 
-* Reputation.barChar() = character for the barlike progress
-* Reputation.barLength() = length of the barlike progress
-* Reputation.showParagonCount() = whether to display paragon count in standing text
-* StandingColors() = table of defined colors in escaped format ready to be used in print (in format "|cffrrggbb") {[1] = hated, [2] = hostile, [3] = unfriendly, [4] = neutral, [5] = friendly, [6] = honored, [7] = revered, [8] = exalted, [9] = paragon, [10] = renown}
-    * Colors() = same as above but the format is {r = x, g = y, b = z} instead of "|cffrrggbb"
+* `Reputation.barChar()` = character for the bar-like progress
+* `Reputation.barLength()` = length of the bar-like progress
+* `Reputation.showParagonCount()` = whether to display paragon count in standing text
+* `Reputation.shortCharCount()` = number of characters in 'Short' TAGs
+* `StandingColors()` = table of defined colors in escaped format ready to be used in print (in format "|cffrrggbb") {[1] = hated, [2] = hostile, [3] = unfriendly, [4] = neutral, [5] = friendly, [6] = honored, [7] = revered, [8] = exalted, [9] = paragon, [10] = renown}
+    * `Colors()` = same as above but the format is {r = x, g = y, b = z} instead of "|cffrrggbb"
 
 ### 2.2 From constants
 
 From `LibStub("PrettyReputationTags").Const`. These are plain values.
 
-* Colors.name = color of name TAG
-* Colors.bar_full = color of filled bar chars
-* Colors.bar_empty = color of empty bar chars
-* Colors.bar_edge = color of brackets of barlike progress
-* Colors.positive = color of positive gain, also used in Enable text and tooltip
-* Colors.negative = color of negative loss, also used in Disable text and tooltip
+* `Colors.name` = color of name TAG
+* `Colors.bar_full` = color of filled bar chars
+* `Colors.bar_empty` = color of empty bar chars
+* `Colors.bar_edge` = color of brackets of bar-like progress
+* `Colors.positive` = color of positive gain, also used in Enable text and tooltip
+* `Colors.negative` = color of negative loss, also used in Disable text and tooltip
 
 ## 3. Tag definition
 
 ### 3.1 Libraries
 
-You will need LibStub (included in this example)
+You will need `LibStub` (included in this example)
 
 ### 3.2 TOC file
 
@@ -75,7 +74,7 @@ Libs\LibStub\LibStub.lua
 ```
 
 
-### 3.2 LUA
+### 3.3 LUA
 
 #### Grap library
 
@@ -88,9 +87,9 @@ local const = tags.Const
 
 #### Usage
 
-In `definition` variable (above) are stored all predefined TAGS. It is possible to add your own or modify existing ones.
+In the `definition` variable, all predefined TAGS are stored. It is possible to add new ones or modify existing ones.
 
-##### Structure of TAG
+##### Structure a of TAG
 
 ```lua
 definition["<<TAG>>"] = {
@@ -104,13 +103,12 @@ definition["<<TAG>>"] = {
 where
 
 * `<<TAG>>` = tag name
-* `<<description>>` = description string shown in configuration
-* `<<string>>` = what will be displayed in chat if this TAG is used, must be string
+* `<<description>>` = description string shown in the configuration
+* `<<string>>` = what will be displayed in chat if this TAG is used, must be a string
 
-`value` is defined as function with one parameter. Members of said parameter are described in [Available info](#1-available-info) section.
+The `value` is defined as a function with one parameter. The members of this parameter are described in the [Available info](#1-available-info) section.
 
-Function defined in `value` is called only if that TAG is used in message pattern (or in debug mode).
-You can use that function to do whatever you want, but remember it is called every time reputation message is displayed and it MUST return a string!
+The function defined in `value` is called only if that TAG is used in a message pattern (or in debug mode). You can use this function to do whatever you want, but remember, it is called every time a reputation message is displayed, and it MUST return a string!
 
 #### TAG examples
 
@@ -164,6 +162,6 @@ definition["c_name"] = {
 }
 ```
 
-## New and modified tags are shown in options
+## New and Modified Tags Are Shown in Options
 
 ![Options with new tags](https://i.imgur.com/9u6aa0J.png)
